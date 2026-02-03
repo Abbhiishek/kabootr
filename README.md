@@ -1,135 +1,124 @@
-# Turborepo starter
+# kabootr
 
-This Turborepo starter is maintained by the Turborepo core team.
+Open-source Email Automation Platform
 
-## Using this example
+kabootr is an open-source platform for designing, deploying, and operating automated email workflows at scale. It provides a modular architecture, an extensible provider system, a templating engine, scheduling, event triggers, and rich observability. The project is designed to be production-ready, easy to deploy, and welcoming to contributors.
 
-Run the following command:
+## Why open source
 
-```sh
-npx create-turbo@latest
-```
+- Transparent security and data handling
+- Community-driven feature roadmap
+- Faster bug fixes and improvements through collaboration
+- Learn from real-world usage and contributions
 
-## What's inside?
+## Features
 
-This Turborepo includes the following packages/apps:
+- Workflow engine: Build complex email workflows with triggers, conditions, and branching
+- Template engine: Design responsive email templates with variables
+- Connectors: SMTP, SES, SendGrid, Mailgun, and other providers via pluggable adapters
+- Scheduling: Time-based and event-based scheduling
+- Recipient management: Lists, deduplication, suppression, and analytics
+- Delivery analytics: Open, click, bounce, unsubscribe tracking
+- API and UI: Manage workflows, templates, recipients, and runs
+- Extensibility: Plugins and custom connectors
+- Observability: Centralized logs, metrics, and traces
+- Security and compliance: Secrets management and audit logs
 
-### Apps and Packages
+## Architecture
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+kabootr is designed as a set of loosely coupled components. A typical deployment includes:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- API server: RESTful endpoints to manage workflows, templates, recipients, and runs
+- Worker: Executes email sending tasks, retries, and error handling
+- Template engine: Renders dynamic email templates
+- Connectors: Adapters to email providers (SMTP, SES, SendGrid, etc.)
+- Storage: Durable data store for workflows, runs, and analytics
+- UI: Web-based interface to view and manage everything
+- Config & Secrets: Centralized configuration management
+- Observability: Logs, metrics, and traces collection
 
-### Utilities
+> Note: The repository ships with a containerized setup to simplify local development and testing.
 
-This Turborepo has some additional tools already setup for you:
+## Quick start
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+We recommend starting with Docker to get up and running quickly.
 
-### Build
+Prerequisites
 
-To build all apps and packages, run the following command:
+- Docker and Docker Compose
+- Optional: Node.js or Python runtimes if you want to run services outside Docker
 
-```
-cd my-turborepo
+1. Clone the repository
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+- `git clone https://github.com/abbhiishek/kabootr.git`
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+2. Copy environment example
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+- `cp .env.example .env`
 
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+3. Start services
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+- `docker compose up -d --build`
 
-### Develop
+4. Access the UI
 
-To develop all apps and packages, run the following command:
+- UI: `http://localhost:3000`
+- API: `http://localhost:8080`
 
-```
-cd my-turborepo
+5. Verify
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+- Use the UI to create a sample workflow or send a test email
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+Notes
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+- Ports and environment variables are configurable via `.env`. Service mappings are defined in `docker-compose.yml`.
+- Data persists in the included storage/database containers between restarts.
 
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+## Running locally (non-Docker)
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+If you prefer to run services directly, each service can be started independently according to its language and runtime. The repository is organized to support multiple runtimes; check the relevant directories for setup instructions and dependencies.
 
-### Remote Caching
+## Environment and configuration
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+- `APP_PORT`: Port for the UI
+- `DB_CONNECTION_STRING`: Connection string for the database
+- `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`: SMTP credentials when using SMTP
+- `MAIL_PROVIDER`: One of `SMTP`, `SES`, `SENDGRID`, etc.
+- `LOG_LEVEL`: Logging level (info, debug, warn, error)
+- `ENABLE_UI`, `ENABLE_API`, `ENABLE_WORKER`: Feature flags to enable/disable components
+- Secrets should be managed securely and not committed to version control.
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## API and docs
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+- The project exposes a RESTful API to manage workflows, templates, recipients, and runs. See the repository's documentation for API endpoints, data models, and examples.
+- The UI communicates with the API to provide a convenient interface for workflow management.
 
-```
-cd my-turborepo
+## Testing
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+- Tests are organized per service. Run tests from each service's directory using its chosen test framework (for example, `npm test`, `pytest`, or `go test`).
+- Ensure dependencies are installed and databases are available for integration tests.
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
+## CI / PR guidance
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+- The repository uses GitHub Actions for CI. PRs should pass linting and tests before merging.
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## Contributing
 
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
+- We welcome open-source contributions: feature enhancements, bug fixes, documentation improvements, and tests.
+- Create issues to discuss large changes, or submit PRs with clear explanations of the problem and the solution.
+- Follow a standard GitHub workflow: fork, branch, commit with meaningful messages, and open a PR.
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
+## Code of conduct
 
-## Useful Links
+- We value inclusive and respectful collaboration. Please adhere to standard open-source community guidelines.
 
-Learn more about the power of Turborepo:
+## License
 
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+- Kabootr is released under the MIT License. See LICENSE.md for details.
+
+## Acknowledgments
+
+- Thanks to the community for feedback and contributions.
+
+
+We appreciate your interest in kabootr. Happy coding!
