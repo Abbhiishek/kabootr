@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc.js";
-import { users } from "@repo/db";
+import { users } from "@kabootr/db";
 import { eq } from "drizzle-orm";
 
 export const userRouter = createTRPCRouter({

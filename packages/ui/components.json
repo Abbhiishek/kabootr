@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "./src/styles/globals.css",
+    "baseColor": "zinc",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@kabootr/ui/components",
+    "utils": "@kabootr/ui/lib/utils",
+    "hooks": "@kabootr/ui/hooks",
+    "lib": "@kabootr/ui/lib",
+    "ui": "@kabootr/ui/components"
+  }
+}

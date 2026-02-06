@@ -1,7 +1,7 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { db } from "@repo/db";
-import { auth } from "@repo/auth";
+import { db } from "@kabootr/db";
+import { auth } from "@kabootr/auth";
 import superjson from "superjson";
 
 const t = initTRPC.create({

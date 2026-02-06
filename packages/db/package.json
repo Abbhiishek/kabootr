@@ -1,31 +1,27 @@
 {
-  "name": "@repo/db",
+  "name": "@kabootr/db",
   "version": "0.0.0",
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**"
-  ],
+  "exports": {
+    "./*": "./src/*"
+  },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "lint": "eslint .",
-    "clean": "rm -rf dist"
+    "remove-node": "rm -rf node_modules",
+    "dev": "drizzle-kit studio",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
-    "drizzle-orm": "^0.38.0",
-    "pg": "^8.13.0"
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.41.0",
+    "pg": "^8.13.1"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "@repo/eslint-config": "workspace:*",
+    "@kabootr/typescript-config": "workspace:*",
+    "@kabootr/eslint-config": "workspace:*",
+    "@types/node": "^20",
     "@types/pg": "^8.11.0",
     "drizzle-kit": "^0.30.0",
     "typescript": "5.9.2"
-  },
-  "exports": {
-    ".": "./src/index.ts",
-    "./schema": "./src/schema/index.ts"
   }
 }

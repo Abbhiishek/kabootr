@@ -1,13 +1,9 @@
 {
-  "name": "@repo/trpc",
+  "name": "@kabootr/trpc",
   "version": "0.0.0",
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**"
-  ],
   "scripts": {
+    "remove-node": "rm -rf node_modules",
     "build": "tsc",
     "dev": "tsc --watch",
     "lint": "eslint .",
@@ -18,14 +14,14 @@
     "@trpc/client": "^11.0.0",
     "@trpc/react-query": "^11.0.0",
     "@tanstack/react-query": "^5.0.0",
-    "@repo/auth": "workspace:*",
-    "@repo/db": "workspace:*",
+    "@kabootr/auth": "workspace:*",
+    "@kabootr/db": "workspace:*",
     "superjson": "^2.2.2",
     "zod": "^3.24.0"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "@repo/eslint-config": "workspace:*",
+    "@kabootr/typescript-config": "workspace:*",
+    "@kabootr/eslint-config": "workspace:*",
     "typescript": "5.9.2"
   },
   "exports": {

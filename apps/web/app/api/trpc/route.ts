@@ -1,6 +1,6 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { appRouter } from "@repo/trpc/server";
-import { db } from "@repo/db";
+import { appRouter } from "@kabootr/trpc/server";
+import { db } from "@kabootr/db";
 
 const handler = (req: Request) =>
   fetchRequestHandler({

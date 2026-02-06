@@ -4,7 +4,7 @@ import {
   organizationProcedure,
   protectedProcedure,
 } from "../trpc.js";
-import { organizations } from "@repo/db";
+import { organizations } from "@kabootr/db";
 import { eq } from "drizzle-orm";
 
 export const organizationRouter = createTRPCRouter({

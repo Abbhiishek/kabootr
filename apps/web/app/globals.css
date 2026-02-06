@@ -1,30 +1,111 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+/* ============================================
+   KABOOTR AI - Design System
+   Using shadcn/ui patterns with Tailwind CSS v4
+   ============================================ */
+
+@theme {
+  /* shadcn/ui color tokens (HSL values) */
+  --color-background: hsl(240 10% 2%);
+  --color-foreground: hsl(0 0% 100%);
+
+  --color-card: hsl(240 10% 4%);
+  --color-card-foreground: hsl(0 0% 100%);
+
+  --color-popover: hsl(240 10% 4%);
+  --color-popover-foreground: hsl(0 0% 100%);
+
+  --color-primary: hsl(168 100% 45%);
+  --color-primary-foreground: hsl(240 10% 4%);
+
+  --color-secondary: hsl(240 5% 12%);
+  --color-secondary-foreground: hsl(0 0% 100%);
+
+  --color-muted: hsl(240 5% 16%);
+  --color-muted-foreground: hsl(240 5% 60%);
+
+  --color-accent: hsl(270 70% 55%);
+  --color-accent-foreground: hsl(0 0% 100%);
+
+  --color-destructive: hsl(0 70% 50%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+
+  --color-border: hsl(240 5% 12%);
+  --color-input: hsl(240 5% 12%);
+  --color-ring: hsl(168 100% 45%);
+
+  /* Custom brand colors */
+  --color-brand: hsl(168 100% 45%);
+  --color-brand-dark: hsl(168 100% 35%);
+  --color-brand-glow: hsl(168 100% 45% / 0.4);
+
+  /* Gradients as colors */
+  --color-gradient-start: hsl(168 100% 45%);
+  --color-gradient-mid: hsl(210 100% 50%);
+  --color-gradient-end: hsl(270 70% 55%);
+
+  /* Typography */
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Border radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  /* Animations */
+  --animate-fade-up: fade-up 0.6s ease-out both;
+  --animate-fade-in: fade-in 0.6s ease-out both;
+  --animate-slide-in-left: slide-in-left 0.5s ease-out both;
+  --animate-slide-in-right: slide-in-right 0.5s ease-out both;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s infinite;
+  --animate-gradient: gradient-shift 4s ease infinite;
+  --animate-shimmer: shimmer 2s infinite;
+}
+
+/* CSS Custom Properties for non-Tailwind usage */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* shadcn/ui standard variables */
+  --background: 240 10% 2%;
+  --foreground: 0 0% 100%;
+  --card: 240 10% 4%;
+  --card-foreground: 0 0% 100%;
+  --popover: 240 10% 4%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 168 100% 45%;
+  --primary-foreground: 240 10% 4%;
+  --secondary: 240 5% 12%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 240 5% 16%;
+  --muted-foreground: 240 5% 60%;
+  --accent: 270 70% 55%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 5% 12%;
+  --input: 240 5% 12%;
+  --ring: 168 100% 45%;
+  --radius: 0.75rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-}
-
+/* Base styles */
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  @apply border-border;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a {
@@ -32,19 +113,263 @@ a {
   text-decoration: none;
 }
 
-.imgDark {
-  display: none;
+/* Selection */
+::selection {
+  @apply bg-primary text-primary-foreground;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-  .imgLight {
-    display: none;
+::-webkit-scrollbar-track {
+  @apply bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/60 rounded-sm;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary;
+}
+
+/* ============================================
+   Animation Keyframes
+   ============================================ */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  .imgDark {
-    display: unset;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px hsl(168 100% 45% / 0.4),
+      0 0 40px hsl(168 100% 45% / 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 30px hsl(168 100% 45% / 0.5),
+      0 0 60px hsl(168 100% 45% / 0.3);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes typing-cursor {
+  0%,
+  50% {
+    border-color: hsl(168 100% 45%);
+  }
+  51%,
+  100% {
+    border-color: transparent;
+  }
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+/* Gradient text */
+.text-gradient {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(
+    135deg,
+    hsl(168 100% 45%),
+    hsl(210 100% 50%),
+    hsl(270 70% 55%)
+  );
+  background-size: 200% auto;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Glow effects */
+.glow {
+  animation: pulse-glow 3s infinite;
+}
+
+.glow-sm {
+  box-shadow: 0 0 10px hsl(168 100% 45% / 0.3);
+}
+
+.glow-lg {
+  box-shadow:
+    0 0 40px hsl(168 100% 45% / 0.4),
+    0 0 80px hsl(168 100% 45% / 0.2);
+}
+
+/* Gradient backgrounds */
+.bg-gradient-brand {
+  background: linear-gradient(
+    135deg,
+    hsl(168 100% 45%),
+    hsl(210 100% 50%),
+    hsl(270 70% 55%)
+  );
+}
+
+.bg-gradient-mesh {
+  background:
+    radial-gradient(
+      ellipse at 20% 30%,
+      hsl(168 100% 45% / 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 70%,
+      hsl(270 70% 55% / 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      hsl(210 100% 50% / 0.05) 0%,
+      transparent 60%
+    );
+}
+
+/* Grid overlay */
+.bg-grid {
+  background-image:
+    linear-gradient(hsl(168 100% 45% / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(168 100% 45% / 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Animation delay utilities */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-400 {
+  animation-delay: 0.4s;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+}
+.delay-600 {
+  animation-delay: 0.6s;
+}
+.delay-700 {
+  animation-delay: 0.7s;
+}
+.delay-800 {
+  animation-delay: 0.8s;
+}
+.delay-1000 {
+  animation-delay: 1s;
+}
+
+/* Container */
+.container {
+  @apply mx-auto px-4 sm:px-6 lg:px-8;
+  max-width: 1280px;
+}
+
+/* Section spacing */
+.section {
+  @apply py-16 md:py-24 lg:py-32;
+}
+
+/* Card hover effect */
+.card-hover {
+  @apply transition-all duration-300;
+}
+
+.card-hover:hover {
+  @apply -translate-y-1 shadow-xl;
+  box-shadow:
+    0 20px 40px hsl(0 0% 0% / 0.3),
+    0 0 0 1px hsl(168 100% 45% / 0.1);
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
 }

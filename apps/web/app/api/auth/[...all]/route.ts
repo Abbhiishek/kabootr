@@ -1,3 +1,3 @@
-import { auth } from "@repo/auth";
+import { auth } from "@kabootr/auth";
 
 export { auth as GET, auth as POST };

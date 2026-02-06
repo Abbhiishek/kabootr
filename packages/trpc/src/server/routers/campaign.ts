@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, organizationProcedure } from "../trpc.js";
-import { campaigns } from "@repo/db";
+import { campaigns } from "@kabootr/db";
 import { eq, and, desc } from "drizzle-orm";
 
 export const campaignRouter = createTRPCRouter({

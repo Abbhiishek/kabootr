@@ -1,27 +1,19 @@
 {
-  "name": "@repo/auth",
+  "name": "@kabootr/auth",
   "version": "0.0.0",
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**"
-  ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "lint": "eslint .",
-    "clean": "rm -rf dist"
+    "remove-node": "rm -rf node_modules"
   },
   "dependencies": {
     "better-auth": "^1.0.0",
-    "@repo/db": "workspace:*",
+    "@kabootr/db": "workspace:*",
     "react": "^19.2.0",
     "next": "16.1.0"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "@repo/eslint-config": "workspace:*",
+    "@kabootr/typescript-config": "workspace:*",
+    "@kabootr/eslint-config": "workspace:*",
     "@types/react": "19.2.2",
     "typescript": "5.9.2"
   },

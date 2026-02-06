@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@kabootr/web",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -9,37 +9,24 @@
     "start": "next start",
     "lint": "eslint --max-warnings 0",
     "check-types": "next typegen && tsc --noEmit",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "remove-node": "rm -rf node_modules"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
-    "@repo/db": "workspace:*",
-    "@repo/auth": "workspace:*",
-    "@repo/trpc": "workspace:*",
-    "better-auth": "^1.0.0",
-    "drizzle-orm": "^0.38.0",
-    "pg": "^8.13.0",
+    "@kabootr/auth": "workspace:*",
+    "@kabootr/db": "workspace:*",
+    "@kabootr/trpc": "workspace:*",
+    "@kabootr/ui": "workspace:*",
     "next": "16.1.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "@trpc/server": "^11.0.0",
-    "@trpc/client": "^11.0.0",
-    "@trpc/react-query": "^11.0.0",
-    "@trpc/tanstack-react-query": "^11.0.0",
-    "@tanstack/react-query": "^5.0.0",
-    "zod": "^3.24.0"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@kabootr/eslint-config": "workspace:*",
+    "@kabootr/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^22.15.3",
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2",
     "@types/pg": "^8.11.0",
-    "drizzle-kit": "^0.30.0",
-    "eslint": "^9.39.1",
-    "typescript": "5.9.2"
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2"
   }
 }
