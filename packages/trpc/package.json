@@ -3,11 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "remove-node": "rm -rf node_modules",
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "lint": "eslint .",
-    "clean": "rm -rf dist"
+    "remove-node": "rm -rf node_modules"
   },
   "dependencies": {
     "@trpc/server": "^11.0.0",
